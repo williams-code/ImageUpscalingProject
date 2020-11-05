@@ -74,7 +74,7 @@ def openFileDiag(label):
     # Convert the image to a JPEG if the image selected is a PNG.
     if(tk.filename.endswith(".png")):
         selectedImage = Image.open(tk.filename)
-        convertedImage = image.convert("RGB")
+        convertedImage = selectedImage.convert("RGB")
         convertedImage.save(str(os.getcwd()) + r'\UploadedImage\input.jpg', "JPEG")
     else:
         copyfile(tk.filename, str(os.getcwd()) + r'\UploadedImage\input.jpg')
