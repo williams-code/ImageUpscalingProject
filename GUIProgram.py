@@ -30,6 +30,9 @@ def loadModel(number):
     if(number == 3):
         savedModel = tensorflow.keras.models.load_model(r'426to1600.h5', compile=False)
         savedModel.compile(optimizer=optimizers.Lookahead(optimizers.RectifiedAdam(amsgrad=True)))
+    if(number == 4):
+        savedModel = tensorflow.keras.models.load_model(r'213to1600.h5', compile=False)
+        savedModel.compile(optimizer=optimizers.Lookahead(optimizers.RectifiedAdam(amsgrad=True)))
 
 
 def testImage(input, model, label):
@@ -87,6 +90,9 @@ def openFileDiag(label):
     elif(modelSelected == 3):
         loadModel(3)
         testImage(os.getcwd() + r'\UploadedImage\input.jpg', savedModel, label)
+    elif(modelSelected == 4):
+        loadModel(4)
+        testImage(os.getcwd() + r'\UploadedImage\input.jpg', savedModel, label)
     label.set("Select your photo to upscale:")
 
 def saveImage():
@@ -125,12 +131,19 @@ class Window(Frame):
             modelSelected = 3
             global outputResolution
             outputResolution = (1600, 2400)
+        def model4():
+            global modelSelected
+            modelSelected = 4
+            global outputResolution
+            outputResolution = (1600, 2400)
         model = 1
         radioButton1 = Radiobutton(tk, text="640x427 to 1920x1280", variable=model, value=1, command=model1)
         radioButton1.pack( anchor = W )
         radioButton2 = Radiobutton(tk, text="1920x1280 to 2400x1600", variable=model, value=2, command=model2)
         radioButton2.pack( anchor = W )
         radioButton3 = Radiobutton(tk, text="640x427 to 2400x1600", variable=model, value=3, command=model3)
+        radioButton3.pack( anchor = W )
+        radioButton3 = Radiobutton(tk, text="320x213 to 2400x1600", variable=model, value=4, command=model4)
         radioButton3.pack( anchor = W )
         radioButton1.select()
         model = 1
