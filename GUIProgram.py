@@ -70,7 +70,18 @@ def testImage(input, model, label):
         print(str(savedImage))
         matplotlib.imsave(savedImage, testOutput)
 
+def createMissingDirectories():
+    if(not os.path.exists(str(os.getcwd()) + r'\UploadedImage')):
+        os.makedirs(str(os.getcwd()) + r'\UploadedImage')
+    if(not os.path.exists(str(os.getcwd()) + r'\AfterImageResize')):
+        os.makedirs(str(os.getcwd()) + r'\AfterImageResize')
+    if(not os.path.exists(str(os.getcwd()) + r'\OutputImage')):
+        os.makedirs(str(os.getcwd()) + r'\OutputImage')
+
 def openFileDiag(label):
+    # Make the folders if they do not exist.
+    createMissingDirectories()
+
     label.set("Select an image upscale and wait.")
     tk.filename =  filedialog.askopenfilename(initialdir = "/",title = "Select File",filetypes = [("all files","*")])
     print (tk.filename)
